@@ -58,16 +58,10 @@ BOOL NoteDateSet::OnInitDialog()
 		DWORD year, month, date, hours, minutes, seconds;
 		_stscanf(pParentNote->m_NoteTime,L"%4d%2d%2d%2d%2d%2d",&year, &month, &date, &hours, &minutes, &seconds);
 
-		//CString sreadTime;
 		CTime readTime(year, month, date, hours, minutes, seconds);
-		//sreadTime = readTime.Format("%Y%m%d%H%M%S");
-		//AfxMessageBox(L"设置前：" + sreadTime);
 		
 		m_NoteDate.SetTime(&readTime);
 		m_NoteTime.SetTime(&readTime);
-
-		//sreadTime = readTime.Format("%Y%m%d%H%M%S");
-		//AfxMessageBox(L"设置后：" + sreadTime);
 	}
 
 
@@ -100,7 +94,7 @@ void NoteDateSet::OnBnClickedButton1()
 	CString strTime = noteTime.Format(L"%H%M%S");
 	pParentNote->m_NoteTime = strDate + strTime;
 
-	if (pParentNote->m_NoticeFlag != L"1")//没设置过闹钟
+	if (pParentNote->m_NoticeFlag != L"1")
 	{
 		if ( ((CButton *)GetDlgItem(IDC_CHK_POP))->GetCheck() == BST_CHECKED )
 		{
@@ -109,7 +103,7 @@ void NoteDateSet::OnBnClickedButton1()
 		} else {
 			this->SendMessage(WM_CLOSE);
 		}
-	} else {//设置过闹钟了
+	} else {
 		CDialogEx::OnOK();
 	}
 }

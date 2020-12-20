@@ -21,9 +21,7 @@ public:
 // 实现
 protected:
 	HICON m_hIcon;
-	/******************************************************************/
 	afx_msg LRESULT OnSystemtray(WPARAM wParam, LPARAM lParam);
-	/******************************************************************/
 
 	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
@@ -33,9 +31,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	/*************************************************/
-	NOTIFYICONDATA NotifyIcon;  //系统托盘类	
-	/*************************************************/
+	NOTIFYICONDATA NotifyIcon;
 public:
 	afx_msg void OnAddNewNote();
 	afx_msg void OnDelAllNote();

@@ -30,9 +30,7 @@ void CSticky_noteDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CSticky_noteDlg, CDialogEx)
-	/**********************************************************************/
 	ON_MESSAGE(WM_SYSTEMTRAY, &CSticky_noteDlg::OnSystemtray)
-	/**********************************************************************/
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
@@ -143,7 +141,7 @@ afx_msg LRESULT CSticky_noteDlg::OnSystemtray(WPARAM wParam, LPARAM lParam)
 	switch(lParam)     
 	{    
 	case WM_LBUTTONDOWN:
-	case  WM_RBUTTONDOWN://左右键都能出菜单
+	case  WM_RBUTTONDOWN:
 		{       
 			CMenu myTrayMenu;
 			CPoint ptMouse;
@@ -196,7 +194,6 @@ void CSticky_noteDlg::OnShowAllNote()
 			myNoteList[i]->m_HideFlag = L"0";
 		}
 	}
-	
 }
 
 /*********************帮助**************************/
@@ -220,7 +217,6 @@ void CSticky_noteDlg::Onmyexit()
 
 	CString totalCount;
 	totalCount.Format(L"%d", noteCount);
-	//AfxMessageBox(totalCount);
 	WritePrivateProfileString(L"便签数目", L"便签数", totalCount, iniFilePath);
 
 	for (int i=0; i<noteCount; ++i)
@@ -331,20 +327,13 @@ void readNoteInfo(CSticky_noteDlg * curWindow)
 		GetPrivateProfileString(readNoteNo, L"位置", L"", readNotePos.GetBuffer(255), 255, iniFilePath);
 		readNotePos.ReleaseBuffer();
 		pNoteDlg->m_NotePos = readNotePos;
-
 		int noteLight, noteTop, noteWidth, noteHight;
-		//AfxMessageBox(pNoteDlg->m_NotePos);
 		_stscanf(pNoteDlg->m_NotePos,L"%4d,%4d,%4d,%4d",&noteLight, &noteTop, &noteWidth, &noteHight);
-		CString str;
-		str.Format(L"%d,%d,%d,%d", noteLight, noteTop, noteWidth, noteHight);
-		//AfxMessageBox(str);
-		//AfxMessageBox(pNoteDlg->m_NotePos);
 		pNoteDlg->SetWindowPos(NULL, noteLight, noteTop, noteWidth, noteHight, NULL);
 
 
 		GetPrivateProfileString(readNoteNo, L"背景颜色", L"", s_readBGColor.GetBuffer(255), 255, iniFilePath);
 		s_readBGColor.ReleaseBuffer();
-		//myNoteList[i]->m_NotePos = readBGColor;
 		DWORD noteRed,noteGreen,noteBlue;
 		_stscanf(s_readBGColor,L"%3d,%3d,%3d",&noteRed,&noteGreen,&noteBlue);
 		COLORREF bgColor = RGB(noteRed,noteGreen,noteBlue);
@@ -353,7 +342,6 @@ void readNoteInfo(CSticky_noteDlg * curWindow)
 
 		GetPrivateProfileString(readNoteNo, L"字体颜色", L"", s_readTxtColor.GetBuffer(255), 255, iniFilePath);
 		s_readTxtColor.ReleaseBuffer();
-		//pNoteDlg->m_NotePos = readNotePos;
 		DWORD textRed,textGreen,textBlue;
 		_stscanf(s_readTxtColor,L"%3d,%3d,%3d",&textRed,&textGreen,&textBlue);
 		COLORREF textBGColor = RGB(textRed,textGreen,textBlue);

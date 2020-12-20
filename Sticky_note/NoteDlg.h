@@ -9,8 +9,7 @@ class CNoteDlg : public CDialogEx
 	DECLARE_DYNAMIC(CNoteDlg)
 
 public:
-	/*************用于便利贴窗口拉伸*********/
-	CRect m_rect; //用于保存原对话框大小
+	CRect m_rect;
 
 	/*******************存储*******************/
 	CString m_NoteContent;	//内容

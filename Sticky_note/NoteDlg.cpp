@@ -38,7 +38,6 @@ void CNoteDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CNoteDlg, CDialogEx)
 	ON_WM_SIZE()
 	ON_WM_CTLCOLOR()
-//	ON_WM_RBUTTONDOWN()
 ON_COMMAND(ID_32790, &CNoteDlg::OnChangeNoteBGC)
 ON_COMMAND(ID_32791, &CNoteDlg::OnChangeTxtC)
 ON_COMMAND(ID_32792, &CNoteDlg::OnSetNoteTitle)
@@ -51,7 +50,6 @@ ON_COMMAND(ID_32798, &CNoteDlg::OnNoteFZ)
 ON_COMMAND(ID_32799, &CNoteDlg::OnNoteZT)
 ON_COMMAND(ID_32801, &CNoteDlg::OnNoteSelAll)
 ON_WM_TIMER()
-//ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
 
 
@@ -87,15 +85,11 @@ BOOL CNoteDlg::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 
-/***********************用于便利贴窗口拉伸**************************/
-	GetClientRect(&m_rect); //获取对话框的大小
-
-/***************************快捷键设置**********************/
+	GetClientRect(&m_rect);
 	hotKey=::LoadAccelerators(AfxGetInstanceHandle(),MAKEINTRESOURCE(IDR_MENU1));
 
-
 /***********************初始化窗口标题**************************/
-	CString strCurTime; //获取系统时间 　　
+	CString strCurTime;
 	CTime curTime;
 	curTime=CTime::GetCurrentTime();
 	strCurTime=curTime.Format("%A,%b, %d,%Y ");
@@ -108,8 +102,6 @@ BOOL CNoteDlg::OnInitDialog()
 	m_BGColor  = RGB(255, 255, 0);
 	m_TxtColor = RGB(0, 0, 0);
 	m_NoteTitle = strCurTime;
-
-
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
@@ -236,7 +228,6 @@ void CNoteDlg::OnSetNoteDate()
 	NoteDateSet myNoteDateSetDlg;
 	if (myNoteDateSetDlg.DoModal() == IDOK)
 	{
-		//AfxMessageBox(L"设置1号定时器");
 		if (preNoticeFlag == L"1")
 		{
 			KillTimer(1);
@@ -292,12 +283,9 @@ void CNoteDlg::OnTimer(UINT_PTR nIDEvent)
 		CTime curTime = CTime::GetCurrentTime();
 		CString strCurTime;
 		strCurTime = curTime.Format("%Y%m%d%H%M%S");
-		//AfxMessageBox(strCurTime + L":" + m_NoteTime);
-		//AfxMessageBox(m_NoteTime+L"\n20201210160000");
 		if (strCurTime == m_NoteTime)
 		{
 			KillTimer(1);
-			//AfxMessageBox(L"到了！");
 			if (m_HideFlag == L"1")
 			{
 				this->ShowWindow(SW_SHOW);

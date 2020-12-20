@@ -70,13 +70,11 @@ BOOL CSticky_noteApp::InitInstance()
 	CSticky_noteDlg dlg;
 	m_pMainWnd = &dlg;
 
-	/******************以下方式实现主窗体的隐藏****************/
 	//INT_PTR nResponse = dlg.DoModal();
 	INT_PTR nResponse = dlg.Create(CSticky_noteDlg::IDD);
 	dlg.MoveWindow(0,0,0,0);
 	dlg.ShowWindow(SW_HIDE);
 	dlg.RunModalLoop();
-	/**********************************************************/
 
 	if (nResponse == IDOK)
 	{
